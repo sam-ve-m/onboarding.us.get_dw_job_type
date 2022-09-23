@@ -1,0 +1,55 @@
+include:
+- ./func/*
+kind: ArchiveUploadSpec
+name: func-mH3f
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: get-employ-type-fn-d56a93a0-0585-4bf6-b507-65ffa9d63ea4
+  namespace: default
+spec:
+  deployment:
+    checksum: {}
+  environment:
+    name: get-employ-type-env
+    namespace: default
+  source:
+    checksum: {}
+    type: url
+    url: archive://func-mH3f
+status:
+  buildstatus: pending
+  lastUpdateTimestamp: "2022-09-21T21:09:19Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: get-employ-type-fn
+  namespace: default
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: newdeploy
+      MaxScale: 3
+      MinScale: 1
+      SpecializationTimeout: 120
+      TargetCPUPercent: 80
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: get-employ-type-env
+    namespace: default
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    functionName: main.get_employ_type
+    packageref:
+      name: get-employ-type-fn-d56a93a0-0585-4bf6-b507-65ffa9d63ea4
+      namespace: default
+  requestsPerPod: 1
+  resources: {}
