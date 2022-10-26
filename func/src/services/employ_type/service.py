@@ -8,7 +8,7 @@ from src.repositories.oracle.repository import EmployTypeOracleRepository
 class EmployTypeService:
 
     @classmethod
-    def get_employ_type_response(cls) -> List[EmployTypeModel]:
+    def get_employ_type_response(cls) -> List[dict]:
         enum_values = EmployTypeCacheRepository.get_employ_type_enum()
         if not enum_values:
             enum_values = EmployTypeOracleRepository.get_employ_type()

@@ -11,8 +11,9 @@ class ResponseModel:
             self,
             success: bool,
             code: InternalCode,
-            message: str = None,
-            result: any = None):
+            result: any,
+            message: str = None
+    ):
 
         self.success = success
         self.code = code

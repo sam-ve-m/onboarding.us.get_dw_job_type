@@ -7,7 +7,6 @@ dummy_value = MagicMock()
 
 @patch.object(ResponseModel, "to_dumps")
 def test_instance(mocked_dumps):
-    model = ResponseModel(dummy_value, dummy_value)
-    assert model.result is None
+    model = ResponseModel(dummy_value, dummy_value, dummy_value)
     assert model.message is None
 

@@ -10,5 +10,5 @@ def test_from_database(mocked_instance):
     EmployTypeModel.from_database(dummy_value)
     mocked_instance.assert_called_once_with(
         code=dummy_value[0],
-        description=dummy_value[1],
+        value=dummy_value[1],
     )
