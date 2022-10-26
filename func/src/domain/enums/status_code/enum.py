@@ -10,4 +10,4 @@ class InternalCode(IntEnum):
     DATA_NOT_FOUND = 99
 
     def __repr__(self):
-        return self.value
+        return str(self.value)

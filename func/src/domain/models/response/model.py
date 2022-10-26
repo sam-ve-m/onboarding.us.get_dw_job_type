@@ -1,11 +1,8 @@
-# STANDARD IMPORTS
 from json import dumps
 from flask import Response
 
-# THIRD PART IMPORTS
 from nidavellir import Sindri
 
-# PROJECT IMPORTS
 from src.domain.enums.status_code.enum import InternalCode
 
 
@@ -35,20 +32,6 @@ class ResponseModel:
         )
 
         self.response = response_model
-        return response_model
-
-    @staticmethod
-    def build_response(
-            success: bool, code: InternalCode, message: str = None, result: any = None
-    ) -> str:
-        response_model = dumps(
-            {
-                "result": result,
-                "message": message,
-                "success": success,
-                "code": code.value,
-            }
-        )
         return response_model
 
     def build_http_response(

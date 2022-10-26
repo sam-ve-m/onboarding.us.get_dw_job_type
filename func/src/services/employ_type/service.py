@@ -1,16 +1,19 @@
-# PROJECT IMPORTS
-from src.domain.models.employ_type.response.model import EmployTypeToResponse
-from src.repositories.job_type.repository import EmployTypeRepository
+from typing import List
+
+from src.domain.models.employ_type.model import EmployTypeModel
+from src.repositories.cache.repository import EmployTypeCacheRepository
+from src.repositories.oracle.repository import EmployTypeOracleRepository
 
 
 class EmployTypeService:
 
     @classmethod
-    def get_employ_type_response(cls) -> list:
-        employ_type = EmployTypeRepository.get_employ_type()
-
-        response = EmployTypeToResponse.employ_type_response(
-            employ_type
-        )
-
+    def get_employ_type_response(cls) -> List[EmployTypeModel]:
+        enum_values = EmployTypeCacheRepository.get_employ_type_enum()
+        if not enum_values:
+            enum_values = EmployTypeOracleRepository.get_employ_type()
+            EmployTypeCacheRepository.save_employ_type_enum(enum_values)
+        response = list(map(
+            EmployTypeModel.from_database, enum_values
+        ))
         return response
