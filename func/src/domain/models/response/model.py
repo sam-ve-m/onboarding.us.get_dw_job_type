@@ -36,10 +36,11 @@ class ResponseModel:
         return response_model
 
     def build_http_response(
-            self, status: int
+            self, status: int, mimetype: str = "application/json"
     ) -> Response:
         http_response = Response(
             self.response,
+            mimetype=mimetype,
             status=status,
         )
         return http_response
