@@ -11,7 +11,7 @@ class ResponseModel:
             self,
             success: bool,
             code: InternalCode,
-            result: any,
+            result: any = None,
             message: str = None
     ):
 
