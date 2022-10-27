@@ -1,24 +1,42 @@
 # THIRD PART IMPORT
+from contextlib import contextmanager
+from typing import Generator
+
 import cx_Oracle
 from decouple import config
+from etria_logger import Gladsheim
+
+from src.domain.exceptions.exceptions import FailToFetchData
 
 
 class OracleInfrastructure:
-    @classmethod
-    def get_connection(cls) -> cx_Oracle.Cursor:
-        connection = cls._make_connection()
-        return connection.cursor()
+    connection = None
 
     @classmethod
-    def _make_connection(cls) -> cx_Oracle.Connection:
-        connection = cx_Oracle.connect(
-            user=config("ORACLE_USER"),
-            password=config("ORACLE_PASSWORD"),
-            dsn=cx_Oracle.makedsn(
+    def _get_connection(cls) -> cx_Oracle.Connection:
+        if cls.connection is None:
+            dsn = cx_Oracle.makedsn(
                 config("ORACLE_BASE_DSN"),
                 config("ORACLE_PORT"),
                 service_name=config("ORACLE_SERVICE"),
-            ),
-            encoding=config("ORACLE_ENCODING"),
-        )
-        return connection
+            )
+            cls.connection = cx_Oracle.connect(
+                encoding=config("ORACLE_ENCODING"),
+                password=config("ORACLE_PASSWORD"),
+                user=config("ORACLE_USER"),
+                dsn=dsn,
+            )
+        return cls.connection
+
+    @classmethod
+    @contextmanager
+    def get_cursor(cls) -> Generator[cx_Oracle.Cursor, None, None]:
+        try:
+            connection = cls._get_connection()
+            with connection.cursor() as cursor:
+                yield cursor
+        except cx_Oracle.DatabaseError as e:
+            (error,) = e.args
+            message = f"Oracle-Error-Code: {error.code}. Oracle-Error-Message: {error.message} - Oracle-ex: {e}"
+            Gladsheim.error(error=e, message=message)
+            raise FailToFetchData()
