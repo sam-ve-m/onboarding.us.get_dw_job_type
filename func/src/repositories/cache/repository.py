@@ -1,9 +1,8 @@
-# STANDARD IMPORTS
-from typing import Union
-
-# THIRD PART IMPORTS
+from typing import List, Optional
 from etria_logger import Gladsheim
 from mnemosine import SyncCache
+
+from src.domain.exceptions.exceptions import FailToFetchData
 
 
 class EmployTypeCacheRepository:
@@ -12,19 +11,17 @@ class EmployTypeCacheRepository:
     @classmethod
     def save_employ_type_enum(cls, employ_type: list, time: int = 3600) -> bool:
         try:
-            SyncCache.save(cls.enum_key, list(employ_type), int(time))
+            SyncCache.save(cls.enum_key, list(employ_type), time)
             return True
-        except ValueError as error:
-            Gladsheim.error(error=error, message="Error saving enum in cache.")
-            return False
-        except TypeError as error:
-            Gladsheim.error(error=error, message="Error saving enum in cache.")
-            return False
         except Exception as error:
             Gladsheim.error(error=error, message="Error saving enum in cache.")
-            return False
+            raise FailToFetchData()
 
     @classmethod
-    def get_employ_type_enum(cls) -> Union[list, None]:
-        result = SyncCache.get(cls.enum_key)
-        return result
+    def get_employ_type_enum(cls) -> Optional[List[tuple]]:
+        try:
+            result = SyncCache.get(cls.enum_key)
+            return result
+        except Exception as error:
+            Gladsheim.error(error=error, message="Error saving enum in cache.")
+            raise FailToFetchData()
