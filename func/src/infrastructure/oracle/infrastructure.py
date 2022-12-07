@@ -16,7 +16,9 @@ class OracleInfrastructure:
     def _get_connection(cls) -> cx_Oracle.Connection:
         if cls.connection is None:
             cls.connection = cx_Oracle.connect(
-                config("ORACLE_CONNECTION_STRING")
+                dsn=config("ORACLE_CONNECTION_STRING"),
+                user=config("ORACLE_USER"),
+                password=config("ORACLE_PASSWORD")
             )
         return cls.connection
 
