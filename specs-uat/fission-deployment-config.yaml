@@ -4,4 +4,4 @@
 apiVersion: fission.io/v1
 kind: DeploymentConfig
 name: onboarding-us-get-dw-job-type
-uid: 8029c717-2fd1-4875-bc9a-989898f09113
+uid: a47b7f83-b68d-430b-9027-4f30be32335e

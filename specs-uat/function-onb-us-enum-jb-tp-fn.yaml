@@ -1,35 +1,35 @@
 include:
-- ./func/*
+- fission.py
 kind: ArchiveUploadSpec
-name: func-mH3f
+name: fission-py-0asq
 
 ---
 apiVersion: fission.io/v1
 kind: Package
 metadata:
   creationTimestamp: null
-  name: get-employ-type-fn-d56a93a0-0585-4bf6-b507-65ffa9d63ea4
+  name: onb-us-enum-jb-tp-fn-7c9c935a-f198-4e20-af8e-6e8595c5b5fd
   namespace: default
 spec:
   deployment:
     checksum: {}
+    type: url
+    url: archive://fission-py-0asq
   environment:
-    name: get-employ-type-env
+    name: onb-us-enum-jb-tp-env
     namespace: default
   source:
     checksum: {}
-    type: url
-    url: archive://func-mH3f
 status:
-  buildstatus: pending
-  lastUpdateTimestamp: "2022-09-21T21:09:19Z"
+  buildstatus: none
+  lastUpdateTimestamp: "2023-01-06T10:30:06Z"
 
 ---
 apiVersion: fission.io/v1
 kind: Function
 metadata:
   creationTimestamp: null
-  name: get-employ-type-fn
+  name: onb-us-enum-jb-tp-fn
   namespace: default
 spec:
   InvokeStrategy:
@@ -38,18 +38,24 @@ spec:
       MaxScale: 3
       MinScale: 1
       SpecializationTimeout: 120
-      TargetCPUPercent: 80
+      TargetCPUPercent: 0
+      hpaMetrics:
+      - resource:
+          name: cpu
+          target:
+            averageUtilization: 80
+            type: Utilization
+        type: Resource
     StrategyType: execution
   concurrency: 500
   environment:
-    name: get-employ-type-env
+    name: onb-us-enum-jb-tp-env
     namespace: default
   functionTimeout: 60
   idletimeout: 120
   package:
-    functionName: main.get_employ_type
     packageref:
-      name: get-employ-type-fn-d56a93a0-0585-4bf6-b507-65ffa9d63ea4
+      name: onb-us-enum-jb-tp-fn-7c9c935a-f198-4e20-af8e-6e8595c5b5fd
       namespace: default
   requestsPerPod: 10000
   resources: {}
