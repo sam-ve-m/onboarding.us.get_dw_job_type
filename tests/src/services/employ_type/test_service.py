@@ -1,9 +1,9 @@
 from unittest.mock import patch
 
-from src.domain.models.employ_type.model import EmployTypeModel
-from src.repositories.cache.repository import EmployTypeCacheRepository
-from src.repositories.oracle.repository import EmployTypeOracleRepository
-from src.services.employ_type.service import EmployTypeService
+from func.src.domain.models.employ_type.model import EmployTypeModel
+from func.src.repositories.cache.repository import EmployTypeCacheRepository
+from func.src.repositories.oracle.repository import EmployTypeOracleRepository
+from func.src.services.employ_type.service import EmployTypeService
 
 
 @patch.object(EmployTypeCacheRepository, "get_employ_type_enum")

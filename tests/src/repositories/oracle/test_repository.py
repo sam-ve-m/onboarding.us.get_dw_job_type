@@ -1,8 +1,8 @@
 from typing import List
 from unittest.mock import patch, MagicMock
 
-from src.infrastructure.oracle.infrastructure import OracleInfrastructure
-from src.repositories.oracle.repository import EmployTypeOracleRepository
+from func.src.infrastructure.oracle.infrastructure import OracleInfrastructure
+from func.src.repositories.oracle.repository import EmployTypeOracleRepository
 
 
 @patch.object(EmployTypeOracleRepository, "_query")

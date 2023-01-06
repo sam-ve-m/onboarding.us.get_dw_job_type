@@ -1,8 +1,8 @@
 from typing import List
 
-from src.domain.models.employ_type.model import EmployTypeModel
-from src.repositories.cache.repository import EmployTypeCacheRepository
-from src.repositories.oracle.repository import EmployTypeOracleRepository
+from func.src.domain.models.employ_type.model import EmployTypeModel
+from func.src.repositories.cache.repository import EmployTypeCacheRepository
+from func.src.repositories.oracle.repository import EmployTypeOracleRepository
 
 
 class EmployTypeService:
