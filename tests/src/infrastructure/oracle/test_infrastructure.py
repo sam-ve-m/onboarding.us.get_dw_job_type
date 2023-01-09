@@ -2,8 +2,8 @@ import cx_Oracle
 import pytest
 from etria_logger import Gladsheim
 
-from src.domain.exceptions.exceptions import FailToFetchData
-from src.infrastructure.oracle.infrastructure import OracleInfrastructure
+from func.src.domain.exceptions.exceptions import FailToFetchData
+from func.src.infrastructure.oracle.infrastructure import OracleInfrastructure
 from unittest.mock import patch, MagicMock
 from decouple import AutoConfig
 

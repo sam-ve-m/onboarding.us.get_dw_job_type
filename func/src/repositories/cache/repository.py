@@ -2,7 +2,7 @@ from typing import List, Optional
 from etria_logger import Gladsheim
 from mnemosine import SyncCache
 
-from src.domain.exceptions.exceptions import FailToFetchData
+from func.src.domain.exceptions.exceptions import FailToFetchData
 
 
 class EmployTypeCacheRepository:

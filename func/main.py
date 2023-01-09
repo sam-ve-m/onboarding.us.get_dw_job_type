@@ -2,10 +2,10 @@ from http import HTTPStatus
 
 from etria_logger import Gladsheim
 
-from src.domain.enums.status_code.enum import InternalCode
-from src.domain.exceptions.exceptions import FailToFetchData
-from src.domain.models.response.model import ResponseModel
-from src.services.employ_type.service import EmployTypeService
+from func.src.domain.enums.status_code.enum import InternalCode
+from func.src.domain.exceptions.exceptions import FailToFetchData
+from func.src.domain.models.response.model import ResponseModel
+from func.src.services.employ_type.service import EmployTypeService
 import flask
 
 

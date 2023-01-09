@@ -3,7 +3,7 @@ from flask import Response
 
 from nidavellir import Sindri
 
-from src.domain.enums.status_code.enum import InternalCode
+from func.src.domain.enums.status_code.enum import InternalCode
 
 
 class ResponseModel:

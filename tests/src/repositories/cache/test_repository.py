@@ -5,8 +5,8 @@ import pytest
 from etria_logger import Gladsheim
 from mnemosine import SyncCache
 
-from src.domain.exceptions.exceptions import FailToFetchData
-from src.repositories.cache.repository import EmployTypeCacheRepository
+from func.src.domain.exceptions.exceptions import FailToFetchData
+from func.src.repositories.cache.repository import EmployTypeCacheRepository
 
 
 dummy_value, dummy_exception = MagicMock(), Exception()

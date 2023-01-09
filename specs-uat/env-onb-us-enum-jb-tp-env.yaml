@@ -2,20 +2,24 @@ apiVersion: fission.io/v1
 kind: Environment
 metadata:
   creationTimestamp: null
-  name: get-employ-type-env
+  name: onb-us-enum-jb-tp-env
   namespace: default
 spec:
   builder:
-    command: build
-    image: nexus.sigame.com.br/fission-builder-3.8:0.0.1
-  imagepullsecret: "nexus-v3"
+    container:
+      name: ""
+      resources: {}
+  imagepullsecret: nexus-v3
   keeparchive: false
   resources: {}
   runtime:
-    image: nexus.sigame.com.br/fission-env-cx-async:0.0.1
+    container:
+      name: ""
+      resources: {}
+    image: nexus.sigame.com.br/fission-onboarding-us-enum-job-type:0.1.0
     podspec:
       containers:
-        - name: get-employ-type-env
+        - name: onb-us-enum-jb-tp-env
           env:
             - name: ASGI_FRAMEWORK
               value: "HYPERCORN"

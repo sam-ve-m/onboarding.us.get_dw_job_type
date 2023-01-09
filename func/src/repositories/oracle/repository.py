@@ -1,6 +1,6 @@
 from typing import List
 
-from src.infrastructure.oracle.infrastructure import OracleInfrastructure
+from func.src.infrastructure.oracle.infrastructure import OracleInfrastructure
 
 
 class EmployTypeOracleRepository:
