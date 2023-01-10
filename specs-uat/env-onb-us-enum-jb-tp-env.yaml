@@ -31,18 +31,12 @@ spec:
               value: "/5pswHkrCgWhMYrV7TM7oVm8VtulfzdYKE2rlS8f"
             - name: MNEMOSINE_REDIS_HOST
               value: "redis://jormungandr:Mdn45oodsanPOhbrewbDS@172.30.19.183:6379"
-            - name: ORACLE_BASE_DSN
-              value: "172.30.18.44"
+            - name: ORACLE_CONNECTION_STRING
+              value: "(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=172.30.18.44)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=opdbuat.subpriv.vcnuat.oraclevcn.com)))"
             - name: ORACLE_USER
               value: "ujormdb001"
             - name: ORACLE_PASSWORD
               value: "YhrewmJDSA76hba"
-            - name: ORACLE_SERVICE
-              value: "opdbuat.subpriv.vcnuat.oraclevcn.com"
-            - name: ORACLE_ENCODING
-              value: "UTF-8"
-            - name: ORACLE_PORT
-              value: "1521"
             - name: HEIMDALL_REGION_NAME
               value: "sa-east-1"
             - name: HEIMDALL_BUCKET_NAME_KEY
