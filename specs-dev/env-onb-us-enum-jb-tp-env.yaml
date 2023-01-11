@@ -16,7 +16,7 @@ spec:
     container:
       name: ""
       resources: {}
-    image: nexus.sigame.com.br/fission-onboarding-us-enum-job-type:0.1.0
+    image: nexus.sigame.com.br/fission-onboarding-us-enum-job-type:0.2.0-0
     podspec:
       containers:
         - name: onb-us-enum-jb-tp-env
