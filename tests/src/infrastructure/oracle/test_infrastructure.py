@@ -11,35 +11,22 @@ from decouple import AutoConfig
 dummy_env = "dummy env"
 
 
-@patch.object(cx_Oracle, "makedsn")
 @patch.object(cx_Oracle, "connect")
 @patch.object(AutoConfig, "__call__")
-def test_get_client(mocked_env, mocked_connection, mocked_dsn):
+def test_get_client(mocked_env, mocked_connection):
     new_connection_created = OracleInfrastructure._get_connection()
     assert new_connection_created == mocked_connection.return_value
     mocked_connection.assert_called_once_with(
-        encoding=mocked_env.return_value,
         password=mocked_env.return_value,
         user=mocked_env.return_value,
-        dsn=mocked_dsn.return_value,
-    )
-    mocked_dsn.assert_called_once_with(
-        mocked_env.return_value,
-        mocked_env.return_value,
-        service_name=mocked_env.return_value,
+        dsn=mocked_env.return_value,
     )
     reused_client = OracleInfrastructure._get_connection()
     assert reused_client == new_connection_created
     mocked_connection.assert_called_once_with(
-        encoding=mocked_env.return_value,
         password=mocked_env.return_value,
         user=mocked_env.return_value,
-        dsn=mocked_dsn.return_value,
-    )
-    mocked_dsn.assert_called_once_with(
-        mocked_env.return_value,
-        mocked_env.return_value,
-        service_name=mocked_env.return_value,
+        dsn=mocked_env.return_value,
     )
     OracleInfrastructure.connection = None
 
