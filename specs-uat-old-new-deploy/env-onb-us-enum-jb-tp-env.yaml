@@ -5,17 +5,17 @@ metadata:
   name: onb-us-enum-jb-tp-env
   namespace: default
 spec:
+  builder:
+    container:
+      name: ""
+      resources: {}
   imagepullsecret: nexus-v3
   keeparchive: false
-  poolsize: 1
-  resources:
-    requests:
-      cpu: 128m
-      memory: 128Mi
-    limits:
-      cpu: 256m
-      memory: 256Mi
+  resources: {}
   runtime:
+    container:
+      name: ""
+      resources: {}
     image: nexus.sigame.com.br/fission-onboarding-us-enum-job-type:0.2.0-0
     podspec:
       containers:
@@ -57,5 +57,4 @@ spec:
               value: "0"
             - name: REDIS_HOST_ACCESS_URL
               value: "redis://heimdal:FBJAnjkqw21yjewkDSA@172.30.19.183:6379?db=8"
-  terminationGracePeriod: 3
   version: 3
